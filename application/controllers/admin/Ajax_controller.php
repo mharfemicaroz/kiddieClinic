@@ -214,6 +214,19 @@ class Ajax_controller extends CI_Controller
     }
   }
 
+  public function load_patient_info_from_appt($keyword)
+  {
+
+    $result = $this->ajax_model->get_patient_name_from_appointment($keyword);
+
+    if (!empty($result)) {
+      echo json_encode($result);
+
+    } else {
+      echo 0;
+    }
+  }
+
   #------------------------------------------------
   #       get_patinet_name
   #------------------------------------------------

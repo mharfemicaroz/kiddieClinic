@@ -13,7 +13,9 @@ function addInputField(t) {
       count +
       "' name='product_id[]' id ='SchoolHiddenId'/></td> <td class='text-right'><input type='number' name='product_quantity[]' id='total_qntt_" +
       count +
-      "' onkeyup='quantity_calculate(" +
+      "' onchange='quantity_calculate(" +
+      count +
+      ")' onkeyup='quantity_calculate(" +
       count +
       "); stockLimit(" +
       count +
@@ -92,7 +94,8 @@ function calculateSum() {
 function invoice_paidamount() {
   var t = $("#grandTotal").val(),
     a = $("#paidAmount").val(),
-    e = t - a;
+    m = $("#insurance_value").val(),
+    e = t - a - m;
   $("#dueAmmount").val(e);
 }
 

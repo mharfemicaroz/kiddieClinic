@@ -5,12 +5,23 @@
 
   public function get_patient_name($keyword)
   {
-    return $query = $this->db->select('patient_id, patient_phone, family_name, given_name, birth_date, sex, patient_phone, address')
-      ->from("patient_tbl")
-      ->where("CONCAT(family_name, ' ', given_name, ' ', patient_phone) LIKE", '%' . $keyword . '%')
-      ->get()
-      ->row();
+    $sql = "SELECT patient_id, patient_phone, family_name, given_name, birth_date, sex, patient_phone, address 
+              FROM patient_tbl 
+              WHERE CONCAT(family_name, ' ', given_name, ' ', patient_phone) LIKE ?";
+
+    return $this->db->query($sql, array('%' . $keyword . '%'))->row();
   }
+
+  public function get_patient_name_from_appointment($keyword)
+  {
+    $sql = "SELECT a.appointment_id,p.patient_id, p.patient_phone, p.family_name, p.given_name, p.birth_date, p.sex, p.patient_phone, p.address 
+              FROM patient_tbl as p 
+              INNER JOIN appointment_tbl as a ON p.patient_id = a.patient_id
+              WHERE a.appointment_id = ?";
+
+    return $this->db->query($sql, array($keyword))->row();
+  }
+
 
 
 

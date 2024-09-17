@@ -52,19 +52,19 @@
                                 <div class="col-sm-6">
 
                                     <div class="form-group row">
-                                        <label for="customer_name" class="col-sm-5"><?php echo display('phone_number') ?>
+                                        <label for="customer_name" class="col-sm-5">Appointment No.
                                             <i class="text-danger">*</i></label>
                                         <div class="col-sm-7">
                                             <input required="" autocomplete="off"
                                                 value="<?php echo $invo->patient_phone; ?>" name="phone" id="phone"
                                                 class="form-control" type="text">
-                                            <span id="csc"
-                                                class="text-center invlid_patient_id"><?php echo display('phone_number') ?></span>
+                                            <span id="csc" class="text-center invlid_patient_id">Appointment No.</span>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="customer_name" class="col-sm-5"><?php echo display('patient_name') ?>
+                                        <label for="customer_name"
+                                            class="col-sm-5"><?php echo display('patient_name') ?>
                                             <i class="text-danger">*</i></label>
                                         <div class="col-sm-7">
                                             <input required="" value="<?php echo $invo->family_name; ?>"
@@ -97,14 +97,16 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="date" class="col-sm-4 col-form-label"><?php echo display('doctor') ?>
+                                        <label for="date"
+                                            class="col-sm-4 col-form-label"><?php echo display('doctor') ?>
                                             <i class="text-danger">*</i></label>
                                         <div class="col-sm-8">
                                             <select name="doctor_id" class=" form-control" required="">
                                                 <option value=""><?php echo display('doctor') ?></option>
                                                 <?php foreach ($doctor as $value) { ?>
                                                     <option value="<?php echo $value->doctor_id ?>">
-                                                        <?php echo $value->doctor_name ?></option>
+                                                        <?php echo $value->doctor_name ?>
+                                                    </option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -161,7 +163,8 @@
 
                                                 <td>
                                                     <input name="product_rate[]" readonly=""
-                                                        value="<?php echo $value->price; ?>" id="price_item_<?php echo $i; ?>"
+                                                        value="<?php echo $value->price; ?>"
+                                                        id="price_item_<?php echo $i; ?>"
                                                         class="price_item1 form-control text-right" type="text">
                                                 </td>
 
@@ -203,7 +206,8 @@
 
                                         <tr>
                                             <td style="text-align:right;" colspan="4">
-                                                <b><?php echo display('total_tax') ?>:</b></td>
+                                                <b><?php echo display('total_tax') ?>:</b>
+                                            </td>
                                             <td class="text-right">
                                                 <input id="total_tax_ammount" tabindex="-1"
                                                     class="form-control text-right" name="total_tax"
@@ -214,7 +218,8 @@
 
                                         <tr>
                                             <td colspan="4" style="text-align:right;">
-                                                <b><?php echo display('grand_total') ?>:</b></td>
+                                                <b><?php echo display('grand_total') ?>:</b>
+                                            </td>
                                             <td class="text-right">
                                                 <input id="grandTotal" tabindex="-1" class="form-control text-right"
                                                     name="grand_total_price" value="<?php echo $invo->grand_total; ?>"
@@ -225,7 +230,8 @@
                                         <tr>
 
                                             <td style="text-align:right;" colspan="4">
-                                                <b><?php echo display('paid_ammount') ?>:</b></td>
+                                                <b><?php echo display('paid_ammount') ?>:</b>
+                                            </td>
                                             <td class="text-right">
                                                 <input id="paidAmount" onkeyup="invoice_paidamount();" tabindex="-1"
                                                     class="form-control text-right" name="paid_amount"
@@ -240,7 +246,8 @@
                                          -->
                                             </td>
                                             <td style="text-align:right;" colspan="3">
-                                                <b><?php echo display('due') ?>:</b></td>
+                                                <b><?php echo display('due') ?>:</b>
+                                            </td>
                                             <td class="text-right">
                                                 <input id="dueAmmount" class="form-control text-right" name="due_amount"
                                                     value="<?php echo $invo->due; ?>" readonly="readonly" type="text">
@@ -318,22 +325,22 @@
             if (phone.length > 0)
                 $.ajax({
 
-                    'url': '<?php echo base_url(); ?>' + 'admin/Ajax_controller/load_patient_info/' + phone,
+                    'url': '<?php echo base_url(); ?>' + 'admin/Ajax_controller/load_patient_info_from_appt/' + phone,
                     'type': 'GET',
                     'dataType': 'JSON',
                     'success': function (data) {
 
                         if (data.patient_id) {
 
-                            $('#patient_name').val(data.family_name);
+                            $('#patient_name').val(data.family_name + ', ' + data.given_name);
                             $('#address').val(data.address);
                             $('#patient_id').val(data.patient_id);
                             $('#csc').removeClass('text-danger');
-                            $(".invlid_patient_id").text(' Patient Pnone Number is Valid').addClass("text-success");
+                            $(".invlid_patient_id").text(' Appointment Number is Valid').addClass("text-success");
 
                         } else {
                             $('#csc').removeClass('text-success');
-                            $(".invlid_patient_id").text('Invalid Patient Phone Number').addClass("text-danger");
+                            $(".invlid_patient_id").text('Invalid Appointment Number').addClass("text-danger");
                         }
                     }, error: function () {
                         alert('failed!');
