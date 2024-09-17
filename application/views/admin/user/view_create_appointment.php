@@ -137,7 +137,7 @@
                         container.html("<?php echo display('patient_name_load_msg') ?>");
                     } else {
                         container.html(data);
-                        $('button[type=submit]').prop('disabled', false);
+                        // $('button[type=submit]').prop('disabled', false);
                     }
                 }
             });
@@ -172,6 +172,7 @@
         var id = $("#t_" + data).text();
         document.getElementById("msg_c").innerHTML = "<div style=' color:green; font-size:20px;'><?php echo display('book_sequence') ?> " + id + "</div>";
         document.getElementById('serial_no').value = id;
+        $('button[type=submit]').prop('disabled', false);
     }
 
 </script>
