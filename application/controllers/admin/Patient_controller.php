@@ -89,7 +89,7 @@ class Patient_controller extends CI_Controller {
 	        return $result;
 	}
 
-
+ 
 /*
 |--------------------------------------
 | save patient to patient_tbl
@@ -99,8 +99,8 @@ class Patient_controller extends CI_Controller {
 	public function save_patient()
 	{
     // $this->form_validation->set_rules('patient_id', 'Patient id', 'required');
-      $this->form_validation->set_rules('phone', 'Phone Number is already exist, ', 'trim|required|is_unique[patient_tbl.patient_phone]|min_length[6]|max_length[15]');
-      $this->form_validation->set_rules('email', 'Email', 'valid_email|is_unique[log_info.email]');         
+    $this->form_validation->set_rules('phone', 'Phone Number is already exist, ', 'trim|required');
+    $this->form_validation->set_rules('email', 'Email', 'valid_email');         
    
       if ($this->form_validation->run()==true) {
           // get picture data
