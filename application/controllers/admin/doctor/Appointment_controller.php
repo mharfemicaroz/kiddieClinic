@@ -107,7 +107,7 @@ class Appointment_controller extends CI_Controller
   }
 
 
-  #----------------------------------------------
+  #--------------------------- -------------------
 #    save appointmaent 
 #----------------------------------------------  
 
@@ -139,7 +139,9 @@ class Appointment_controller extends CI_Controller
         'doctor_id' => $this->input->post('doctor_id'),
         'problem' => $this->input->post('problem'),
         'get_date_time' => date("Y-m-d h:i:s"),
-        'get_by' => $get_by
+        'get_by' => $get_by,
+        'pt_height' => $this->input->post('height'),
+        'pt_weight' => $this->input->post('weight')
       );
 
 

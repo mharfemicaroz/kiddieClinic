@@ -91,6 +91,22 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label class="col-md-3 control-label"> Height(cm) </label>
+                                    <div class="col-md-5">
+                                        <input type="number" min="0" name="height" id="height" class="form-control"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label"> Weight(kg) </label>
+                                    <div class="col-md-5">
+                                        <input type="number" min="0" name="weight" id="weight" class="form-control"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="col-md-3 control-label">Note:</label>
                                     <div class="col-md-5">
                                         <textarea name="problem" class="form-control" rows="3">
