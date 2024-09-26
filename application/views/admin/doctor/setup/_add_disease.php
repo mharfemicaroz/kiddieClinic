@@ -11,7 +11,7 @@
             <small>Add Disease </small>
             <ol class="breadcrumb">
                 <li class="active"><a
-                        href="<?php echo base_url(); ?>admin/Dashboard"><?php echo display('deashbord'); ?></a>
+                        href="<?php echo base_url(); ?>admin/doctor/Dashboard"><?php echo display('deashbord'); ?></a>
                 </li>
             </ol>
         </div>
@@ -35,7 +35,7 @@
                         <div class="portlet-body form">
                             <?php
                             $attributes = array('class' => 'form-horizontal', 'role' => 'form');
-                            echo form_open_multipart('admin/Setup_controller/save_disease', $attributes);
+                            echo form_open_multipart('admin/doctor/Setup_controller/save_disease', $attributes);
                             ?>
 
 
@@ -85,7 +85,7 @@
                                         <td><?php echo $value->disease_name; ?></td>
 
                                         <td class="text-right">
-                                            <a href="<?php echo base_url(); ?>admin/Setup_controller/delete_disease/<?php echo $value->md_id; ?>"
+                                            <a href="<?php echo base_url(); ?>admin/doctor/Setup_controller/delete_disease/<?php echo $value->md_id; ?>"
                                                 onclick="return confirm('Are you want to delelte?');"
                                                 class="btn btn-xs btn-danger">
                                                 <i class="fa fa-trash"></i> </a>

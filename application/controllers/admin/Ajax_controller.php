@@ -80,12 +80,11 @@ class Ajax_controller extends CI_Controller
   }
 
   # Load disease
-  public function load_disease($id)
+  public function load_disease()
   {
 
     $disease = $this->db->select('*')
       ->from('disease')
-      ->where('ms_id', $id)
       ->get()
       ->result();
     echo '<option selected="selected" value="">--Disease--</option>';
@@ -143,17 +142,19 @@ class Ajax_controller extends CI_Controller
   public function load_madicine($id)
   {
 
-    $result = $this->db->select('*')
+    $result = $this->db->select("medicine.*, disease.*")
       ->from('medicine')
-      ->where('classification', $id)
+      ->join('disease', 'medicine.disease_id = disease.md_id', 'left')
+      ->where('disease_id', $id)
       ->get()
       ->result();
 
     foreach ($result as $key => $value) {
       echo '<tr>
-                <td><input class="form-control" id="1" value="' . $value->symptom . '"  disabled type="text"></td>
-                <td><input class="form-control" id="2" value="' . $value->treatment . '"  disabled type="text"></td>
-                <td><input class="form-control" id="3" value="' . $value->medicine . '" disabled type="text"></td>
+                <td><input class="form-control" id="1" value="' . $value->medicine . '"  disabled type="text"></td>
+                <td><input class="form-control" id="2" value="' . $value->brand . '"  disabled type="text"></td>
+                <td><input class="form-control" id="3" value="' . $value->sign . '" disabled type="text"></td>
+                <td><input class="form-control" id="3" value="' . $value->dosage . '" disabled type="text"></td>
                  <td><a href="javascript:void(0);" id="add" onclick="loadHarbs(' . $value->medicine_id . ')" class="btn btn-success btn-sm"><i class="ti-plus m-r-5"></i>Add</a></td>
                 <input type="hidden" name="medicine_id" value="' . $value->medicine_id . '">
             </tr>';
@@ -188,7 +189,11 @@ class Ajax_controller extends CI_Controller
             <th scope="row">
                 <input class="form-control" name="medicine[]" value="' . $result->medicine . '"   type="text">
             </th>
-            
+
+            <td> <input class="form-control" name="brand[]" value="' . $result->brand . '"  id="tokenfield-typeahead" type="text"></td>
+
+            <td><input class="form-control" name="dosage[]" value="' . $result->dosage . '" id="tokenfield-typeahead"  type="text"></td>
+          
             <td><input type="text" class="form-control" name="comment[]" id="tokenfield-typeahead" placeholder="comment" value="" /></td>
             <td>
                 <a href="javascript:void(0);" id="re_' . $medicine_id . '"  class=" btn btn-danger btn-sm remove_button" title="Remove field"><i class="ti-trash" aria-hidden="true"></i></a>

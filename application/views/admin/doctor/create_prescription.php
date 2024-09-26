@@ -46,12 +46,11 @@
 
                     <div class="panel-footer">
                         <div class="row">
-                            <div class="col-sm-8 col-sm-offset-2">
+                            <div class="col-sm-12">
                                 <div class="form-group row">
-                                    <label
-                                        class="col-sm-3 col-form-label text-right"><?php echo display('chief_complain') ?>
+                                    <label class="col-sm-3 col-form-label text-right">Complains
                                         :</label>
-                                    <div class="col-sm-7 autocomplete-container">
+                                    <div class="col-sm-9 autocomplete-container">
                                         <input class="form-control" id="chief-complaint" type="text"
                                             name="chief_complain" oninput="showSuggestions(this.value)">
                                         <div id="suggestion-box" class="suggestions"></div>
@@ -72,7 +71,8 @@
                                         <label class="col-sm-4 col-form-label text-right">Height(cm)
                                             :</label>
                                         <div class="col-sm-8">
-                                            <input class="form-control" type="number" min="0" name="height">
+                                            <input class="form-control" type="number" min="0" id="height" name="height"
+                                                value="<?php echo @$appointment_data->pt_height; ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +82,8 @@
                                         <label class="col-sm-4 col-form-label text-right">Weight(kg)
                                             :</label>
                                         <div class="col-sm-8">
-                                            <input class="form-control" type="number" min="0" name="weight">
+                                            <input class="form-control" type="number" min="0" id="weight" name="weight"
+                                                value="<?php echo @$appointment_data->pt_weight; ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +128,7 @@
                                         <label class="col-sm-4 col-form-label text-right">Body Mass Index(kg/m²)
                                             :</label>
                                         <div class="col-sm-8">
-                                            <input class="form-control" type="number" min="0" name="bmi">
+                                            <input class="form-control" type="text" id="bmi" name="bmi">
                                         </div>
                                     </div>
                                 </div>
@@ -140,30 +141,24 @@
                         <div class="prescription-select">
                             <div class="row">
 
-                                <div class="col-sm-12">
-                                    <h3><?php echo display('reference_diagnosis') ?> :</h3>
-                                    <div class="col-sm-3">
-                                        <div class="form-group row">
-                                            <label
-                                                class="col-sm-4 col-form-label text-right"><?php echo display('language') ?></label>
-                                            <div class="col-sm-8">
-                                                <select name="lang_id" class="form-control" onchange="loadeSection()"
-                                                    id="lang_id" required>
-                                                    <option value="">--Section--</option>
-                                                    <?php foreach ($lang as $value) {
-                                                        echo '<option value="' . $value->lang_id . '">' . $value->lang_name . '</option>';
 
-                                                    } ?>
-                                                </select>
-                                            </div>
-                                        </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group row"><label class="col-sm-4 col-form-label text-right">
+                                            <h3><?php echo display('reference_diagnosis') ?> :</h3>
+                                        </label>
+                                        <div class="col-sm-8"><select name="disease" onchange="loadMedicine()"
+                                                class="disease form-control" required id="speed2">
+                                                <option selected="selected">--<?php echo display('disease') ?>--
+                                                </option>
+                                            </select></div>
                                     </div>
                                 </div>
+
 
                                 <div class="col-sm-12">
                                     <div class="row">
 
-                                        <div class="col-sm-3">
+                                        <!-- <div class="col-sm-3">
                                             <div class="form-group row">
                                                 <label
                                                     class="col-sm-4 col-form-label text-right"><?php echo display('section') ?></label>
@@ -176,9 +171,9 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="col-sm-3">
+                                        <!-- <div class="col-sm-3">
                                             <div class="form-group row">
                                                 <label
                                                     class="col-sm-4 col-form-label text-right"><?php echo display('disease') ?></label>
@@ -191,9 +186,9 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="col-sm-3">
+                                        <!-- <div class="col-sm-3">
                                             <div class="form-group row">
                                                 <label
                                                     class="col-sm-4 col-form-label text-right"><?php echo display('category') ?></label>
@@ -206,9 +201,9 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="col-sm-3">
+                                        <!-- <div class="col-sm-3">
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label text-right">
                                                     <?php echo display('classification') ?></label>
@@ -220,7 +215,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                     </div>
                                 </div>
@@ -231,10 +226,10 @@
                                 <table id="one" class="table table-bordered table-striped table-hover">
                                     <thead>
                                         <tr>
-                                            <th><?php echo display('syndromes') ?></th>
-                                            <th><?php echo display('treatment') ?></th>
                                             <th><?php echo display('medicine') ?></th>
-                                            <th><?php echo display('action') ?></th>
+                                            <th>Brand</th>
+                                            <th>Sign</th>
+                                            <th>Dosage</th>
                                         </tr>
                                     </thead>
                                     <tbody class="medicine_area">
@@ -256,7 +251,8 @@
                                         <th><?php echo display('medicine') ?> <a href="javascript:void(0);"
                                                 class="btn btn-success btn-xs m-l-10 addMedicine"><i
                                                     class="ti-plus m-r-5"></i>Add</a></th>
-
+                                        <th>Brand</th>
+                                        <th>Dosage</th>
                                         <th><?php echo display('comment') ?></th>
                                         <th><?php echo display('action') ?></th>
                                     </tr>
@@ -270,7 +266,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <!-- <div class="col-sm-6">
                                 <div class="form-group row">
                                     <label
                                         class="col-sm-4 col-form-label text-right"><?php echo display('inspecsion') ?>
@@ -338,11 +334,11 @@
                                         <input class="form-control" type="text" name="referral_doctor">
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
 
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <label
                                         class="col-sm-4 col-form-label text-right"><?php echo display('work_injury_insurance') ?>
                                         :</label>
@@ -393,7 +389,7 @@
                                     <div class="col-sm-8">
                                         <input class="form-control" type="text" name="additional_info">
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="form-group row">
                                     <label
@@ -452,9 +448,8 @@
         var disease = $('#disease').val();
         if (disease != '') {
             $.ajax({
-                'url': '<?php echo base_url(); ?>' + 'admin/Ajax_controller/load_disease/' + disease,
+                'url': '<?php echo base_url(); ?>' + 'admin/Ajax_controller/load_disease/',
                 'type': 'GET', //the way you want to send data to your URL
-                'data': { 'disease': disease },
                 'success': function (data) {
 
                     var container = $(".disease");
@@ -468,6 +463,8 @@
             });
         };
     }
+
+    loadeDisease();
 
 
     // load  
@@ -520,12 +517,12 @@
 
     // load medicine name
     function loadMedicine() {
-        var classi_id = $('#classific').val();
-        if (classi_id != '') {
+        var med_id = $('#speed2').val();
+        if (med_id != '') {
             $.ajax({
-                'url': '<?php echo base_url(); ?>' + 'admin/Ajax_controller/load_madicine/' + classi_id,
+                'url': '<?php echo base_url(); ?>' + 'admin/Ajax_controller/load_madicine/' + med_id,
                 'type': 'GET', //the way you want to send data to your URL
-                'data': { 'classi_id': classi_id },
+                'data': { 'med_id': med_id },
                 'success': function (data) {
 
                     var container = $(".medicine_area");
@@ -564,6 +561,23 @@
 
     $(document).ready(function () {
 
+        function calculateBMI() {
+            // Get height and weight input values
+            var height = parseFloat($('#height').val());
+            var weight = parseFloat($('#weight').val());
+
+            if (height > 0 && weight > 0) {
+                // Convert height from cm to meters
+                var heightInMeters = height / 100;
+                // Calculate BMI
+                var bmi = weight / (heightInMeters * heightInMeters);
+                // Display the result rounded to 2 decimal places
+                $('#bmi').val(bmi.toFixed(2));
+            }
+        }
+
+        calculateBMI();
+
         // add row
         var maxField = 50;
         var addButton = $('.addMedicine');
@@ -580,7 +594,8 @@
                     '<input class="form-control sajetion" id="92" name="medicine[]" autocomplete="off" placeholder="Enter Medicine" type="text">' +
                     '<div id="suggesstion-box"></div>' +
                     '</th>' +
-                    // '<td><input type="text"  class="form-control" name="harbs[]" id="tokenfield-typeahead'+x+'" value="" placeholder="Enter Medicine Herbs" /></td>'+
+                    '<td> <input class="form-control" name="brand[]"  id="tokenfield-typeahead' + x + '" type="text"></td>' +
+                    '<td> <input class="form-control" name="dosage[]"  id="tokenfield-typeahead' + x + '" type="text"></td>' +
                     '<td><input type="text"  class="form-control" name="comment[]" id="tokenfield-typeahead' + x + '" value="" placeholder="Comment" /></td>' +
                     '<td>' +
                     '<a href="javascript:void(0);" class="btn btn-danger btn-sm remove_button" type="button"><i class="ti-trash" aria-hidden="true"></i></a>' +
@@ -677,8 +692,15 @@
     const diseases = [
         "Flu", "Cold", "COVID-19", "Stomach Ache", "Headache", "Diabetes",
         "Hypertension", "Asthma", "Allergy", "Arthritis", "Bronchitis", "Cancer",
-        "Chickenpox", "Cholera", "Dengue", "Ebola", "Epilepsy", "Gastroenteritis"
+        "Chickenpox", "Cholera", "Dengue", "Ebola", "Epilepsy", "Gastroenteritis",
+        "Measles", "Mumps", "Rubella", "Whooping Cough", "Scarlet Fever", "Hand, Foot, and Mouth Disease",
+        "RSV (Respiratory Syncytial Virus)", "Tonsillitis", "Ear Infection", "Croup", "Fifth Disease",
+        "Impetigo", "Roseola", "Scabies", "Ringworm", "Conjunctivitis (Pink Eye)", "Tooth Decay",
+        "Pinworms", "Cystic Fibrosis", "Jaundice", "Kawasaki Disease", "Otitis Media", "Sore Throat",
+        "RSV Infection", "Heat Rash", "Eczema", "Anemia", "Molluscum Contagiosum", "Lyme Disease",
+        "RSV Bronchiolitis", "Pharyngitis", "Glandular Fever", "Polio", "Rickets", "Urinary Tract Infection (UTI)"
     ];
+
 
     function getSavedComplaints() {
         const savedComplaints = localStorage.getItem('chiefComplaints');
@@ -748,7 +770,7 @@
 <style>
     .autocomplete-container {
         position: relative;
-        width: 300px;
+        width: 800px;
     }
 
     .suggestions {

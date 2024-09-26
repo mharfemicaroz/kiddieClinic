@@ -5,6 +5,12 @@ $phone = $this->db->select('*')
     ->get()
     ->row();
 
+$logo = $this->db->select('*')
+    ->from('web_pages_tbl')
+    ->where('name', 'logo')
+    ->get()
+    ->row();
+
 $email = $this->db->select('*')
     ->from('web_pages_tbl')
     ->where('name', 'email')
@@ -62,7 +68,49 @@ date_default_timezone_set(@$timezone->details);
     </div>
 
     <div class="container header" style="padding: 30px 20px;">
-        <div class="logo pull-left">
+
+        <table>
+            <tr>
+                <td style="vertical-align: top; text-align: left;">
+                    <img src="<?php echo @$logo->picture; ?>" width="128px!important" height="128px!important"
+                        class="img img-responsive" alt="" style="margin-bottom:20px">
+                    <h1>Doki Jong's Kiddie Clinic</h1>
+                    <h3>(Herminegeldo H. Mangmang, Jr., M.D. DPPS.)</h3>
+                </td>
+                <td style="vertical-align: top; text-align: left;">
+                    <strong>Rivera Medical Center Incs</strong><br>
+                    Medical Arts Building<br>
+                    Panabo City<br>
+                    <strong>Clinic Hours:</strong><br>
+                    Mon, Tue, Wed, Fri<br>
+                    9:00am to 12:00 nn<br>
+                    Thursday:<br>
+                    2:00pm to 5:00pm<br>
+                    Clinic Number: 09335670738
+                </td>
+                <td style="vertical-align: top; text-align: left;">
+                    <strong>Good Shepherd Hospital</strong><br>
+                    Km. 31, National Highway<br>
+                    New Pandan, Panabo City<br>
+                    <strong>Clinic Hours:</strong><br>
+                    Mon, Tue, Wed, Fri, Sat:<br>
+                    2:00pm to 5:00pm
+                </td>
+                <td style="vertical-align: top; text-align: left;">
+                    <strong>Specialist Primary Care of Ilang, Inc</strong><br>
+                    KM. 17, Purok 19, Ilang<br>
+                    Davao City<br>
+                    <strong>Clinic Hours:</strong><br>
+                    Thursday:<br>
+                    10:00am to 2:00pm<br>
+                    Saturday:<br>
+                    10:00am to 2:00pm
+                </td>
+            </tr>
+        </table>
+
+
+        <!-- <div class="logo pull-left">
 
             <h4><?php echo @$doctor->doctor_name; ?></h4>
             <?php echo @$doctor->degrees; ?><br>
@@ -93,7 +141,7 @@ date_default_timezone_set(@$timezone->details);
                     <p><b> <?php echo @$phone->details; ?></b></p>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
     </div>
@@ -122,7 +170,11 @@ date_default_timezone_set(@$timezone->details);
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>Medicine <?php echo @$height; ?></th>
+                                    <th>Medicine</th>
+
+                                    <th>Brand</th>
+
+                                    <th>Dosage</th>
 
                                     <th>Comment</th>
                                 </tr>
@@ -131,6 +183,10 @@ date_default_timezone_set(@$timezone->details);
                                 <?php foreach ($medicine_data['medicine'] as $key => $val) { ?>
                                     <tr>
                                         <td><?php echo @$val->medicine; ?></td>
+
+                                        <td><?php echo @$val->brand; ?></td>
+
+                                        <td><?php echo @$val->dosage; ?></td>
 
                                         <td><?php echo @$val->comment; ?></td>
                                     </tr>

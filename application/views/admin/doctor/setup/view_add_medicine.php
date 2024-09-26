@@ -12,7 +12,7 @@
             <small><?php echo display('add_medicine'); ?></small>
             <ol class="breadcrumb">
                 <li class="active"><a
-                        href="<?php echo base_url(); ?>admin/Dashboard"><?php echo display('deashbord'); ?></a>
+                        href="<?php echo base_url(); ?>admin/doctor/Dashboard"><?php echo display('deashbord'); ?></a>
                 </li>
             </ol>
         </div>
@@ -35,7 +35,7 @@
                         <div class="portlet-body form">
                             <?php
                             $attributes = array('class' => 'form-horizontal', 'role' => 'form');
-                            echo form_open_multipart('admin/Setup_controller/save_medicine', $attributes);
+                            echo form_open_multipart('admin/doctor/Setup_controller/save_medicine', $attributes);
                             ?>
 
                             <div class="form-body">

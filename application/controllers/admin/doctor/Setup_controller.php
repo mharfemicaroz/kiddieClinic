@@ -21,7 +21,7 @@ class Setup_controller extends CI_Controller
 
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-		$this->load->model('admin/Setup_model', 'setup_model');
+		$this->load->model('admin/doctor/Setup_model', 'setup_model');
 	}
 
 
@@ -30,10 +30,10 @@ class Setup_controller extends CI_Controller
 		$data['language'] = $this->setup_model->get_language();
 		$data['disease'] = $this->setup_model->get_disease();
 
-		$this->load->view('admin/_header', $data);
-		$this->load->view('admin/_left_sideber');
-		$this->load->view('admin/setup/_add_disease');
-		$this->load->view('admin/_footer');
+		$this->load->view('admin/doctor/_header', $data);
+		$this->load->view('admin/doctor/_left_sideber');
+		$this->load->view('admin/doctor/setup/_add_disease');
+		$this->load->view('admin/doctor/_footer');
 	}
 
 	public function save_disease()
@@ -42,14 +42,14 @@ class Setup_controller extends CI_Controller
 			'disease_name' => $this->input->post('disease_name')
 		);
 		$this->db->insert('disease', $data);
-		redirect('admin/Setup_controller/add_disease');
+		redirect('admin/doctor/Setup_controller/add_disease');
 	}
 
 
 	public function delete_disease($id)
 	{
 		$this->db->where('md_id', $id)->delete('disease');
-		redirect('admin/Setup_controller/add_disease');
+		redirect('admin/doctor/Setup_controller/add_disease');
 	}
 
 
@@ -60,10 +60,10 @@ class Setup_controller extends CI_Controller
 		$data['category'] = $this->setup_model->get_category();
 		$data['classification'] = $this->setup_model->get_classification();
 
-		$this->load->view('admin/_header', $data);
-		$this->load->view('admin/_left_sideber');
-		$this->load->view('admin/setup/view_add_medicine');
-		$this->load->view('admin/_footer');
+		$this->load->view('admin/doctor/_header', $data);
+		$this->load->view('admin/doctor/_left_sideber');
+		$this->load->view('admin/doctor/setup/view_add_medicine');
+		$this->load->view('admin/doctor/_footer');
 	}
 	#--------------------------------
 #      Save_Medicine	
@@ -81,7 +81,7 @@ class Setup_controller extends CI_Controller
 
 		$this->db->insert('medicine', $medicine);
 		$this->session->set_flashdata('message', '<div class="alert alert-success msg">' . display('medicine_add_msg') . '</div><br>');
-		redirect('admin/Setup_controller/add_medicine');
+		redirect('admin/doctor/Setup_controller/add_medicine');
 
 	}
 
@@ -96,10 +96,10 @@ class Setup_controller extends CI_Controller
 		$data['medicine'] = $this->setup_model->get_medicine();
 
 
-		$this->load->view('admin/_header', $data);
-		$this->load->view('admin/_left_sideber');
-		$this->load->view('admin/setup/view_medicine_list');
-		$this->load->view('admin/_footer');
+		$this->load->view('admin/doctor/_header', $data);
+		$this->load->view('admin/doctor/_left_sideber');
+		$this->load->view('admin/doctor/setup/view_medicine_list');
+		$this->load->view('admin/doctor/_footer');
 	}
 
 
@@ -124,10 +124,10 @@ class Setup_controller extends CI_Controller
 		$data['med_info'] = $this->setup_model->get_medicine_by_id($id);
 
 
-		$this->load->view('admin/_header', $data);
-		$this->load->view('admin/_left_sideber');
-		$this->load->view('admin/setup/view_medicine_edit');
-		$this->load->view('admin/_footer');
+		$this->load->view('admin/doctor/_header', $data);
+		$this->load->view('admin/doctor/_left_sideber');
+		$this->load->view('admin/doctor/setup/view_medicine_edit');
+		$this->load->view('admin/doctor/_footer');
 	}
 
 	#--------------------------------
@@ -147,7 +147,7 @@ class Setup_controller extends CI_Controller
 		$this->db->where('medicine_id', $id);
 		$this->db->update('medicine', $medicine);
 		$this->session->set_flashdata('message', '<div class="alert alert-success">' . display('update_msg') . '</div><br>');
-		redirect('admin/Setup_controller/medicine_List');
+		redirect('admin/doctor/Setup_controller/medicine_List');
 	}
 
 

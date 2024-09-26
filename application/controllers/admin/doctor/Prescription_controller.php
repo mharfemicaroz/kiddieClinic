@@ -23,6 +23,7 @@ class Prescription_controller extends CI_Controller
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->model('admin/doctor/Prescription_model', 'prescription_model');
+		$this->load->model('admin/doctor/Appointment_model', 'appointment_model');
 		$this->load->model('admin/doctor/Overview_model', 'overview_model');
 		$this->load->model('admin/doctor/Doctor_model', 'doctor_model');
 		$this->load->model('admin/Setup_model', 'setup_model');
@@ -65,7 +66,7 @@ class Prescription_controller extends CI_Controller
 	public function create_prescription($appointmaent_id = NULL)
 	{
 
-
+		$data['appointment_data'] = $this->appointment_model->Check_appointment_byID($appointmaent_id);
 		$data['patient_info'] = $this->prescription_model->patient_info($appointmaent_id);
 		$data['lang'] = $this->setup_model->get_language();
 		$data['section'] = $this->setup_model->get_section();
@@ -89,6 +90,8 @@ class Prescription_controller extends CI_Controller
 		$data['chief_complain'] = $this->input->post('chief_complain');
 
 		$t['medicine'] = $this->input->post('medicine');
+		$u['brand'] = $this->input->post('brand');
+		$v['dosage'] = $this->input->post('dosage');
 		$h['harbs'] = $this->input->post('harbs');
 		$comment['comment'] = $this->input->post('comment');
 		$medd = array();
@@ -97,6 +100,8 @@ class Prescription_controller extends CI_Controller
 			$medd['medicine'][$i] = array(
 				'medicine' => $t['medicine'][$i],
 				'harbs' => $h['harbs'][$i],
+				'brand' => $u['brand'][$i],
+				'dosage' => $v['dosage'][$i],
 				'comment' => $comment['comment'][$i],
 			);
 		}
@@ -186,7 +191,7 @@ class Prescription_controller extends CI_Controller
 		return $result;
 	}
 
-	#-------------------------------------------
+	#------------------------------------------- 
 #		view prescription
 #-------------------------------------------		 
 

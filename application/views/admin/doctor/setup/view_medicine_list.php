@@ -11,7 +11,7 @@
             <small><?php echo display('medicine_list'); ?></small>
             <ol class="breadcrumb">
                 <li class="active"><a
-                        href="<?php echo base_url(); ?>admin/Dashboard"><?php echo display('deashbord'); ?></a>
+                        href="<?php echo base_url(); ?>admin/doctor/Dashboard"><?php echo display('deashbord'); ?></a>
                 </li>
             </ol>
         </div>
@@ -52,7 +52,7 @@
                                         <td><?php echo $value->sign; ?></td>
                                         <td><?php echo $value->dosage; ?></td>
                                         <td class="text-right">
-                                            <a href="<?php echo base_url(); ?>admin/Setup_controller/edit_medicine/<?php echo $value->medicine_id; ?>"
+                                            <a href="<?php echo base_url(); ?>admin/doctor/Setup_controller/edit_medicine/<?php echo $value->medicine_id; ?>"
                                                 class="btn btn-xs btn-info">
                                                 <i class="fa fa-edit"></i> </a>
                                         </td>
