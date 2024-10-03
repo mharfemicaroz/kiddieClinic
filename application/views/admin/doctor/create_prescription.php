@@ -118,7 +118,8 @@
                                         <label class="col-sm-4 col-form-label text-right">Temperature(°C)
                                             :</label>
                                         <div class="col-sm-8">
-                                            <input class="form-control" type="number" min="0" name="temperature">
+                                            <input class="form-control" type="number" min="0" name="temperature"
+                                                value="<?php echo @$appointment_data->pt_temperature; ?>">
                                         </div>
                                     </div>
                                 </div>

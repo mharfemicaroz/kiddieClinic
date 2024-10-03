@@ -33,7 +33,7 @@
                                     <th class="all"><?php echo display('patient_id') ?></th>
                                     <th class="all"><?php echo display('phone_number') ?></th>
                                     <th class="all"><?php echo display('sex') ?></th>
-                                    <th class="desktop"><?php echo display('action') ?></th>
+                                    <th class="all"><?php echo display('action') ?></th>
                                 </tr>
                             </thead>
 

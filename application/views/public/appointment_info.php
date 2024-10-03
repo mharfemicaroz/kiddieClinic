@@ -63,6 +63,41 @@ date_default_timezone_set(@$timezone->details);
             width: 350px !important;
             height: 350px !important;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f2f2f2;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        h1,
+        h3 {
+            margin: 5px 0;
+        }
+
+        strong {
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -85,36 +120,45 @@ date_default_timezone_set(@$timezone->details);
         </div>
         <div class="container header">
 
-            <div class="logo pull-left">
-                <a href="#">
-                    <img src="<?php echo @$logo->picture; ?>" class="img-responsive" alt="Awesome Image">
-                </a>
-            </div>
-            <div class="header-right-info pull-right clearfix">
-                <div class="single-header-info">
-                    <div class="icon-box">
-                        <div class="inner-box">
-                            <i class="flaticon-interface"></i>
-                        </div>
-                    </div>
-                    <div class="content">
-                        <h3>EMAIL</h3>
-                        <p><?php echo $email->details; ?></p>
-                    </div>
-                </div>
-                <div class="single-header-info">
-                    <div class="icon-box">
-                        <div class="inner-box">
-                            <i class="flaticon-telephone"></i>
-                        </div>
-                    </div>
-                    <div class="content">
-                        <h3>Call Now</h3>
-                        <p><b><?php echo $phone->details; ?></b></p>
-                    </div>
-                </div>
-
-            </div>
+            <table>
+                <tr>
+                    <td>
+                        <img src="<?php echo @$logo->picture; ?>" width="128px!important" height="128px!important"
+                            class="img img-responsive" alt="" style="margin-bottom:20px">
+                        <h1>Doki Jong's Kiddie Clinic</h1>
+                        <h3>(Herminegeldo H. Mangmang, Jr., M.D. DPPS.)</h3>
+                    </td>
+                    <td>
+                        <strong>Rivera Medical Center Incs</strong><br>
+                        Medical Arts Building<br>
+                        Panabo City<br>
+                        <strong>Clinic Hours:</strong><br>
+                        Mon, Tue, Wed, Fri<br>
+                        9:00am to 12:00 nn<br>
+                        Thursday:<br>
+                        2:00pm to 5:00pm<br>
+                        Clinic Number: 09335670738
+                    </td>
+                    <td>
+                        <strong>Good Shepherd Hospital</strong><br>
+                        Km. 31, National Highway<br>
+                        New Pandan, Panabo City<br>
+                        <strong>Clinic Hours:</strong><br>
+                        Mon, Tue, Wed, Fri, Sat: <br>
+                        2:00pm to 5:00pm
+                    </td>
+                    <td>
+                        <strong>Specialist Primary Care of Ilang, Inc</strong><br>
+                        KM. 17, Purok 19, Ilang<br>
+                        Davao City<br>
+                        <strong>Clinic Hours:</strong><br>
+                        Thursday:<br>
+                        10:00am to 2:00pm<br>
+                        Saturday: <br>
+                        10:00am to 2:00pm
+                    </td>
+                </tr>
+            </table>
 
 
         </div>
@@ -139,6 +183,8 @@ date_default_timezone_set(@$timezone->details);
                                 <li>Patient Id :<span class="pull-right"><?php echo $print->patient_id; ?></span></li>
                                 <li>Height :<span class="pull-right"><?php echo $print->pt_height; ?>cm</span></li>
                                 <li>Weight :<span class="pull-right"><?php echo $print->pt_weight; ?>kg</span></li>
+                                <li>Temperature :<span class="pull-right"><?php echo $print->pt_temperature; ?>℃</span>
+                                </li>
                                 <li>Date :<span class="pull-right"><?php echo $print->get_date_time; ?></span></li>
                                 <li>Time :<span class="pull-right"><?php echo $print->sequence; ?></span></li>
                                 <li>Doctor :<span class="pull-right"><?php echo $print->doctor_name; ?></span></li>

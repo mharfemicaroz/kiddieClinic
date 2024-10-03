@@ -97,11 +97,19 @@
                                             required>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label"><?php echo display('notes') ?>:</label>
+                                    <label class="col-md-3 control-label"> Temperature(℃) </label>
                                     <div class="col-md-5">
-                                        <textarea name="problem" class="form-control" rows="3">
-                                     </textarea>
+                                        <input type="number" min="0" step="0.1" name="temperature" id="weight"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Note:</label>
+                                    <div class="col-md-5">
+                                        <textarea name="problem" class="form-control" rows="3"></textarea>
                                         <span class="error-msg"><?php echo form_error('problem'); ?> </span>
                                     </div>
                                 </div>
